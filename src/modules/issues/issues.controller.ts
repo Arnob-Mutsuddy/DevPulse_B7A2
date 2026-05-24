@@ -62,7 +62,7 @@ export const getAll = async (req: AuthRequest, res: Response) => {
 
     const issues = await getAllIssues(sort, type, status);
 
-    const issuesWithReporter = await Promise.all(
+    const issue_reporter = await Promise.all(
       issues.map(async (issue) => {
         const reporter = await getReporterById(issue.reporter_id);
         const { reporter_id, ...rest } = issue;
@@ -70,7 +70,7 @@ export const getAll = async (req: AuthRequest, res: Response) => {
       })
     );
 
-    sendSuccess(res, StatusCodes.OK, 'Issues fetched successfully', issuesWithReporter);
+    sendSuccess(res, StatusCodes.OK, 'Issues fetched successfully', issue_reporter);
   } catch (err) {
     sendError(res, StatusCodes.INTERNAL_SERVER_ERROR, 'Something went wrong', err);
   }
