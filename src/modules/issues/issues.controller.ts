@@ -128,6 +128,7 @@ export const update = async (req: AuthRequest, res: Response) => {
       description || issue.description,
       type || issue.type
     );
+    
 
     sendSuccess(res, StatusCodes.OK, 'Issue updated successfully', updated);
   } catch (err) {
