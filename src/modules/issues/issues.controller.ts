@@ -30,8 +30,8 @@ export const create = async (req: AuthRequest, res: Response) => {
       return;
     }
 
-    if (description.length < 30) {
-      sendError(res, StatusCodes.BAD_REQUEST, 'Description must be at least 30 characters');
+    if (description.length < 10) {
+      sendError(res, StatusCodes.BAD_REQUEST, 'Description must be at least 10 characters');
       return;
     }
 
