@@ -128,9 +128,10 @@ export const update = async (req: AuthRequest, res: Response) => {
       description || issue.description,
       type || issue.type
     );
-    
+    const reporter = await getReporterById(updated.reporter_id);
+    const { reporter_id, ...rest } = updated;
 
-    sendSuccess(res, StatusCodes.OK, 'Issue updated successfully', updated);
+    sendSuccess(res, StatusCodes.OK, 'Issue updated successfully', { ...rest, reporter });
   } catch (err) {
     sendError(res, StatusCodes.INTERNAL_SERVER_ERROR, 'Something went wrong', err);
   }
